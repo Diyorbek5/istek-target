@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ISTEK.UZ — Target, Mini-Sayt va iSmart CRM Sotuv Voronkasi (Prezentatsiya)</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #060b13;
+      --bg-panel: #0d1624;
+      --bg-card: rgba(16, 26, 42, 0.88);
+      --border-gold: rgba(216, 179, 106, 0.28);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --gold-light: #f3dfb6;
+      --gold-main: #d8b36a;
+      --gold-dark: #a67c37;
+      --emerald-light: #34d399;
+      --emerald-main: #10b981;
+      --blue-main: #38bdf8;
+      --blue-indigo: #3b82f6;
+      --amber-main: #f59e0b;
+      --rose-main: #f43f5e;
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.12), transparent 38%),
+        radial-gradient(circle at 88% 15%, rgba(216, 179, 106, 0.14), transparent 42%),
+        radial-gradient(circle at 50% 85%, rgba(56, 189, 248, 0.09), transparent 45%),
+        linear-gradient(180deg, #050911 0%, #09111e 50%, #050911 100%);
+      color: var(--text-white);
+      min-height: 100vh;
+      padding: 28px 24px 60px;
+      line-height: 1.5;
+    }
+
+    .board-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ========================================================================
+       HEADER BAR (EXECUTIVE PRESENTATION BANNER)
+       ======================================================================== */
+    .pres-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 22px 28px;
+      background: linear-gradient(135deg, rgba(16, 26, 44, 0.95), rgba(10, 18, 30, 0.92));
+      border: 1px solid var(--border-gold);
+      border-radius: 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pres-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--emerald-main), var(--gold-main), var(--blue-main), var(--emerald-main));
+    }
+
+    .pres-brand-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .pres-logo-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(216, 179, 106, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pres-logo-box img {
+      height: 38px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .pres-title-group h1 {
+      font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #ffffff 0%, var(--gold-light) 65%, var(--emerald-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .pres-title-group p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 3px;
+    }
+
+    .pres-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pres-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-white);
+    }
+
+    .pres-pill-btn:hover {
+      border-color: var(--gold-main);
+      background: rgba(216, 179, 106, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .pres-pill-btn.gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+      color: #09101b;
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(216, 179, 106, 0.3);
+    }
+
+    /* ========================================================================
+       SECTION WRAPPER & STEP HEADER
+       ======================================================================== */
+    .flow-section {
+      background: linear-gradient(180deg, rgba(14, 23, 38, 0.92) 0%, rgba(9, 15, 26, 0.94) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    .flow-section.gold-border {
+      border-color: var(--border-gold);
+    }
+
+    .sec-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .sec-step-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .step-num-badge {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+      color: #08101c;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(216, 179, 106, 0.3);
+    }
+
+    .sec-step-title h2 {
+      font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .sec-sub-note {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* ========================================================================
+       CONNECTING VERTICAL & HORIZONTAL ARROWS (STRELKALAR)
+       ======================================================================== */
+    .flow-arrow-down {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: -14px 0;
+      z-index: 5;
+      position: relative;
+    }
+
+    .flow-arrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #102238, #0c1828);
+      border: 1.5px solid var(--gold-main);
+      color: var(--gold-light);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(216, 179, 106, 0.22);
+    }
+
+    .arrow-svg-bounce {
+      width: 22px;
+      height: 22px;
+      color: var(--emerald-light);
+      animation: pulseDown 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseDown {
+      0%, 100% { transform: translateY(-2px); opacity: 0.85; }
+      50% { transform: translateY(3px); opacity: 1; }
+    }
+
+    @keyframes pulseRight {
+      0%, 100% { transform: translateX(-3px); opacity: 0.85; }
+      50% { transform: translateX(3px); opacity: 1; }
+    }
+
+    /* ========================================================================
+       BOSQICH 1: TARGET GEO-HUDUDLAR VA REKLAMA YOQISH STRATEGIYASI
+       ======================================================================== */
+    .target-top-mechanics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .mech-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .mech-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(216, 179, 106, 0.14);
+      border: 1px solid rgba(216, 179, 106, 0.32);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold-light);
+    }
+
+    .mech-text h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .mech-text p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .geo-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .geo-card {
+      background: linear-gradient(165deg, rgba(19, 31, 51, 0.92), rgba(11, 19, 33, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .geo-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-main);
+    }
+
+    .geo-card.city { border-top: 3px solid var(--blue-main); }
+    .geo-card.mountain { border-top: 3px solid var(--emerald-main); }
+    .geo-card.region { border-top: 3px solid var(--gold-main); }
+
+    .geo-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .geo-badge {
+      font-size: 0.73rem;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .geo-card.city .geo-badge { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.35); }
+    .geo-card.mountain .geo-badge { background: rgba(16, 185, 129, 0.16); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.35); }
+    .geo-card.region .geo-badge { background: rgba(216, 179, 106, 0.18); color: var(--gold-light); border: 1px solid rgba(216, 179, 106, 0.4); }
+
+    .geo-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .geo-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 0.84rem;
+      color: #cbd5e1;
+    }
+
+    .geo-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .geo-list li strong {
+      color: #ffffff;
+      min-width: 92px;
+      flex-shrink: 0;
+    }
+
+    .geo-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .geo-chip {
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--gold-light);
+    }
+
+    /* ========================================================================
+       BOSQICH 2: MINI-SAYT VA ARIZA TO'LDIRISH MAYDONLARI (ALOHIDA KO'RINISHDA)
+       ======================================================================== */
+    .screens-showcase-grid {
+      display: grid;
+      grid-template-columns: 340px 90px 360px 90px 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Phone Frame Mockup */
+    .phone-mockup {
+      background: #070d17;
+      border: 3px solid #26354d;
+      border-radius: 36px;
+      padding: 12px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .phone-mockup.highlight-gold {
+      border-color: var(--gold-main);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(216, 179, 106, 0.18);
+    }
+
+    .phone-notch {
+      width: 96px;
+      height: 18px;
+      background: #03070e;
+      border-radius: 999px;
+      margin: 0 auto 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .phone-screen-label {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      background: rgba(216, 179, 106, 0.12);
+      border-radius: 999px;
+    }
+
+    .phone-inner {
+      background: linear-gradient(180deg, #0b1523 0%, #09111c 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Mockup 1: Mini-Site Home & Catalog */
+    .mock-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .mock-header img {
+      height: 22px;
+    }
+
+    .mock-lang {
+      font-size: 0.65rem;
+      padding: 3px 7px;
+      border-radius: 6px;
+      background: rgba(216, 179, 106, 0.2);
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .mock-nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 10px;
+      font-size: 0.68rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .mock-nav-tab {
+      padding: 5px 4px;
+      border-radius: 7px;
+      color: var(--text-muted);
+    }
+
+    .mock-nav-tab.active {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
+      color: #09101b;
+    }
+
+    .mock-sys-pills {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      font-size: 0.62rem;
+      text-align: center;
+    }
+
+    .mock-sys-pills span {
+      padding: 4px 2px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .mock-sys-pills span.on {
+      border-color: var(--gold-main);
+      color: var(--gold-light);
+      background: rgba(216, 179, 106, 0.15);
+      font-weight: 700;
+    }
+
+    .mock-hero-img {
+      position: relative;
+      height: 135px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(216, 179, 106, 0.3);
+    }
+
+    .mock-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mock-hero-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(7, 13, 23, 0.85);
+      color: var(--gold-light);
+      font-size: 0.62rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 179, 106, 0.4);
+    }
+
+    .mock-specs-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      text-align: center;
+    }
+
+    .mock-spec-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 9px;
+      padding: 5px 4px;
+    }
+
+    .mock-spec-box strong {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--gold-light);
+    }
+
+    .mock-spec-box span {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    .mock-glowing-cta {
+      margin-top: 4px;
+      background: linear-gradient(135deg, #f5e2b8 0%, #d8b36a 50%, #b98b3e 100%);
+      color: #08101c;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 12px 10px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 22px rgba(216, 179, 106, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-glowing-cta::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+      animation: shimmerSweep 2.6s infinite;
+    }
+
+    @keyframes shimmerSweep {
+      0% { left: -80%; }
+      100% { left: 140%; }
+    }
+
+    /* Mockup 2: Separate Lead Form Fields */
+    .mock-form-field {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(216, 179, 106, 0.32);
+      border-radius: 11px;
+      padding: 8px 11px;
+      position: relative;
+    }
+
+    .mock-field-lbl {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .mock-field-val {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mock-region-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 5px;
+    }
+
+    .mock-reg-tag {
+      font-size: 0.62rem;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.16);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-weight: 700;
+    }
+
+    .mock-submit-btn {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 11px;
+      border-radius: 11px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Horizontal Connector Column */
+    .horiz-arrow-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 6px;
+    }
+
+    .horiz-arrow-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      background: rgba(216, 179, 106, 0.14);
+      border: 1px solid rgba(216, 179, 106, 0.35);
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .horiz-arrow-svg {
+      width: 44px;
+      height: 28px;
+      color: var(--emerald-light);
+      animation: pulseRight 1.6s infinite ease-in-out;
+    }
+
+    /* Right Panel in Step 2: Field-by-Field Data Mapping to iSmart */
+    .mapping-explain-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mapping-explain-card h3 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+
+    .map-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(10, 18, 31, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .map-from {
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .map-arrow {
+      color: var(--emerald-light);
+      font-weight: 800;
+    }
+
+    .map-to {
+      font-family: monospace;
+      font-size: 0.76rem;
+      background: rgba(16, 185, 129, 0.14);
+      color: #6ee7b7;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* ========================================================================
+       BOSQICH 3: iSMART (istek.isteksmart.uz) KANBAN DOSKASI VA BOSQICHLAR O'TKAZISH
+       ======================================================================== */
+    .kanban-real-screenshot-box {
+      background: #0b1320;
+      border: 1.5px solid rgba(216, 179, 106, 0.35);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 24px;
+    }
+
+    .screenshot-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .kanban-real-screenshot-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: block;
+    }
+
+    .kanban-flow-5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      position: relative;
+    }
+
+    .kb-col {
+      background: #f8fafc;
+      color: #0f172a;
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .kb-col.col-new { border-color: #38bdf8; }
+    .kb-col.col-callback { border-color: #60a5fa; }
+    .kb-col.col-missed { border-color: #f59e0b; }
+    .kb-col.col-qualified { border-color: #10b981; background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%); }
+    .kb-col.col-junk { border-color: #fda4af; }
+
+    .kb-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .col-new .kb-col-header { background: #dbeafe; color: #0369a1; }
+    .col-callback .kb-col-header { background: #e0e7ff; color: #1d4ed8; }
+    .col-missed .kb-col-header { background: #fef3c7; color: #b45309; }
+    .col-qualified .kb-col-header { background: #d1fae5; color: #047857; }
+    .col-junk .kb-col-header { background: #ffe4e6; color: #be123c; }
+
+    .kb-count {
+      background: #ffffff;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .kb-lead-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .kb-lead-name {
+      font-weight: 800;
+      font-size: 0.84rem;
+      color: #0f172a;
+    }
+
+    .kb-lead-phone {
+      font-size: 0.76rem;
+      color: #2563eb;
+      font-weight: 700;
+      background: #eff6ff;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid #bfdbfe;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .kb-lead-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+    }
+
+    .kb-ig-badge {
+      background: #ffe4e6;
+      color: #e11d48;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    .kb-lead-note {
+      font-size: 0.7rem;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 5px 7px;
+      border-radius: 6px;
+      line-height: 1.35;
+    }
+
+    .kb-rule-box {
+      margin-top: auto;
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.74rem;
+      line-height: 1.4;
+    }
+
+    .kb-rule-box strong {
+      display: block;
+      color: var(--gold-light);
+      margin-bottom: 3px;
+      font-size: 0.75rem;
+    }
+
+    /* Step transition badges between Kanban columns */
+    .kb-transition-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .kb-trans-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(216, 179, 106, 0.28);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.79rem;
+    }
+
+    .kb-trans-arrow {
+      font-size: 1.2rem;
+      color: var(--emerald-light);
+      font-weight: 800;
+    }
+
+    /* ========================================================================
+       BOSQICH 4: TO'LIQ SOTUV VORONKASI (6 BOSQICHLI VORONKA VA KONVERSIYA)
+       ======================================================================== */
+    .funnel-wrapper {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .funnel-stage {
+      background: linear-gradient(180deg, rgba(19, 32, 54, 0.95) 0%, rgba(11, 19, 33, 0.98) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 18px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .funnel-stage.final-sale {
+      background: linear-gradient(160deg, rgba(6, 78, 59, 0.92) 0%, rgba(13, 28, 38, 0.96) 100%);
+      border: 2px solid var(--emerald-main);
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.25);
+    }
+
+    .f-stage-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .f-step-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(216, 179, 106, 0.18);
+      color: var(--gold-light);
+      border: 1px solid rgba(216, 179, 106, 0.35);
+    }
+
+    .final-sale .f-step-num {
+      background: var(--emerald-main);
+      color: #04130e;
+      border-color: transparent;
+    }
+
+    .f-stage-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .f-stage-desc {
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    .f-stage-owner {
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      font-size: 0.72rem;
+      color: var(--gold-light);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Visual Tapered Funnel Bars */
+    .visual-funnel-bars {
+      margin-top: 22px;
+      background: rgba(7, 12, 22, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vf-bar {
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .vf-1 { width: 100%; background: linear-gradient(90deg, #1e3a8a, #2563eb); }
+    .vf-2 { width: 86%; background: linear-gradient(90deg, #0369a1, #0ea5e9); }
+    .vf-3 { width: 72%; background: linear-gradient(90deg, #b45309, #d97706); }
+    .vf-4 { width: 58%; background: linear-gradient(90deg, #0f766e, #14b8a6); }
+    .vf-5 { width: 46%; background: linear-gradient(90deg, #047857, #10b981); }
+    .vf-6 { width: 34%; background: linear-gradient(90deg, #a67c37, #d8b36a); color: #08101c; }
+
+    /* Responsive adjustments */
+    @media (max-width: 1200px) {
+      .screens-showcase-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .horiz-arrow-svg {
+        transform: rotate(90deg);
+      }
+      .kanban-flow-5 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .funnel-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .geo-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .target-top-mechanics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .kb-transition-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 14px 10px 40px; }
+      .flow-section { padding: 18px 14px; }
+      .kanban-flow-5,
+      .funnel-wrapper,
+      .target-top-mechanics,
+      .kb-transition-strip {
+        grid-template-columns: 1fr;
+      }
+      .vf-1, .vf-2, .vf-3, .vf-4, .vf-5, .vf-6 {
+        width: 100%;
+        font-size: 0.74rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: #060b13 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        padding: 0;
+      }
+      .pres-actions { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="board-container">
+
+    <!-- ======================================================================
+         TOP PRESENTATION HEADER
+         ====================================================================== -->
+    <header class="pres-header">
+      <div class="pres-brand-left">
+        <div class="pres-logo-box">
+          <img src="assets/istek-logo.png" alt="ISTEK Logo" />
+        </div>
+        <div class="pres-title-group">
+          <h1>ISTEK.UZ — Target Reklama, Mini-Sayt va iSmart CRM Sotuv Voronkasi</h1>
+          <p>Instagram Targetdan keluvchi lidlarni qabul qilish, saralash va shartnomaga (sotuvga) aylantirishning yagona tizimi</p>
+        </div>
+      </div>
+      <div class="pres-actions">
+        <a href="index.html" target="_blank" class="pres-pill-btn">
+          <span>🌐 Mini-Saytni ochish</span>
+        </a>
+        <a href="https://istek.isteksmart.uz" target="_blank" class="pres-pill-btn">
+          <span>📊 iSmart CRM (istek.isteksmart.uz)</span>
+        </a>
+        <button type="button" class="pres-pill-btn gold" onclick="window.print()">
+          <span>🖨️ PDF / Saqlash</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ======================================================================
+         1-BOSQICH: TARGET QANDAY VA QAYERLARGA YOQILADI? (3 TA ASOSIY GEO-HUDUD)
+         ====================================================================== -->
+    <section class="flow-section gold-border">
+      <div class="sec-top-bar">
+        <div class="sec-step-title">
+          <span class="step-num-badge">1-BOSQICH • META ADS TARGETING</span>
+          <h2>Target Reklama Qanday va Qayerlarga Yoqiladi?</h2>
+        </div>
+        <span class="sec-sub-note">Instagram Reels • Stories • Feed ➔ isteksmart.vercel.app</span>
+      </div>
+
+      <!-- 4 Core Mechanics of Launching Target -->
+      <div class="target-top-mechanics">
+        <div class="mech-item">
+          <div class="mech-icon">🎯</div>
+          <div class="mech-text">
+            <h4>Kampaniya Maqsadi (Objective)</h4>
+            <p>Meta Ads Manager orqali <strong>Website Leads / Conversions</strong> yoqiladi — faqat real uy/dacha quruvchilarga ko'rsatiladi.</p>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-icon">🎬</div>
+          <div class="mech-text">
+            <h4>Reklama Kreativlari (Reels 9:16)</h4>
+            <p>1) Thermo 80 profil qirqimi va zavod quvvati, 2) Dachada Gilyotina pultda ochilishi, 3) Tayyor villalar obzori.</p>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-icon">📐</div>
+          <div class="mech-text">
+            <h4>Asosiy Magnit Taklif (Offer)</h4>
+            <p><strong>"Bepul lazerli o'lchov + 24 soat ichida aniq smeta va Bepul yetkazib berish"</strong> — mijoz raqam qoldirishga qiziqadi.</p>
+          </div>
+        </div>
+        <div class="mech-item">
+          <div class="mech-icon">🔗</div>
+          <div class="mech-text">
+            <h4>UTM & Avto-Aniq Manba</h4>
+            <p>Har bir reklama linki <code>?utm_source=instagram</code> bilan mini-saytga ulanadi va CRM-ga <strong>Instagram / Issiq lid</strong> bo'lib tushadi.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Targeted Geographical Zones -->
+      <div class="geo-grid-3">
+        <!-- Zone 1: Tashkent City -->
+        <div class="geo-card city">
+          <div class="geo-head">
+            <span class="geo-badge">1-HUDUD • ASOSIY OQIM</span>
+            <span style="font-size: 0.78rem; color: #7dd3fc; font-weight: 700;">Radius: Toshkent sh. (100%)</span>
+          </div>
+          <div class="geo-title">🏙️ Toshkent Shahri</div>
+          <ul class="geo-list">
+            <li><strong>Qayerlarga:</strong> Yangi kottedj shaharchalar, premium novostroykalar, Yunusobod, Mirzo Ulug'bek, Shayxontohur, Yakkasaroy, Chilonzor, Sergeli yangi uchastkalar.</li>
+            <li><strong>Kimlarga:</strong> Yangi hovli/xonadon qurayotganlar, kapital remont qilayotganlar, dizayner va arxitektorlar (28–58 yosh, to'lov qobiliyati yuqori).</li>
+            <li><strong>Taklif:</strong> Ko'cha shovqinini (46 dB) va issiq-sovuqni o'tkazmaydigan <strong>Thermo 80 / Engelberg</strong> hamda <strong>Smart Eshiklar</strong>.</li>
+          </ul>
+          <div class="geo-chips">
+            <span class="geo-chip">Thermo 80</span>
+            <span class="geo-chip">Engelberg</span>
+            <span class="geo-chip">Smart & Thermo Eshiklar</span>
+          </div>
+        </div>
+
+        <!-- Zone 2: Mountain Dachas & Resorts -->
+        <div class="geo-card mountain">
+          <div class="geo-head">
+            <span class="geo-badge">2-HUDUD • VIP & PREMIUM CHEK</span>
+            <span style="font-size: 0.78rem; color: #6ee7b7; font-weight: 700;">Pin-Drop + Dacha Egalari</span>
+          </div>
+          <div class="geo-title">⛰️ Tog'li Hudud (Dachalar)</div>
+          <ul class="geo-list">
+            <li><strong>Qayerlarga:</strong> Chorvoq, Chimgan, Amirsoy, Bo'stonliq, Xumson, Burchmulla, Yusufxona, Parkent, Kumushkon, Zomin dam olish zonalari.</li>
+            <li><strong>Kimlarga:</strong> Dacha va dam olish maskani quruvchilar, tog'da yashab/dam olib yurgan mulk egalari hamda Toshkentda yashovchi dacha investorlari.</li>
+            <li><strong>Taklif:</strong> Pultda ochiladigan <strong>Gilyotina</strong>, <strong>Hebeschiebe</strong> suriluvchi panoramali vitrajlar va tog' sovug'iga chidamli <strong>Thermo 80</strong>.</li>
+          </ul>
+          <div class="geo-chips">
+            <span class="geo-chip">Gilyotina (Pultli)</span>
+            <span class="geo-chip">Hebeschiebe Vitraj</span>
+            <span class="geo-chip">Qishki Terrasa</span>
+          </div>
+        </div>
+
+        <!-- Zone 3: Tashkent Region -->
+        <div class="geo-card region">
+          <div class="geo-head">
+            <span class="geo-badge">3-HUDUD • KATTA HOVLI BOZORI</span>
+            <span style="font-size: 0.78rem; color: var(--gold-light); font-weight: 700;">Radius: +35 km atrof</span>
+          </div>
+          <div class="geo-title">🏡 Toshkent Viloyati</div>
+          <ul class="geo-list">
+            <li><strong>Qayerlarga:</strong> Qibray, Zangiota, Chirchiq, Nazarbek, Keles, Nurafshon, Yangiyo'l, G'azalkent, O'rta va Yuqori Chirchiq tumanlari.</li>
+            <li><strong>Kimlarga:</strong> Katta hovli-joy va 2 qavatli uchastka qurayotgan oilalar (rom soni ko'p bo'lgan kompleks buyurtmachilar).</li>
+            <li><strong>Taklif:</strong> Qishda gaz/elektrni 40% tejaydigan <strong>Kompleks (Butun uyga Eshik + Rom)</strong> + Bepul o'lchov va bepul yetkazib berish!</li>
+          </ul>
+          <div class="geo-chips">
+            <span class="geo-chip">Kompleks Uy Paket</span>
+            <span class="geo-chip">Bepul O'lchov & Yetkazish</span>
+            <span class="geo-chip">Zavod Kafolati</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARROW 1 -> 2 -->
+    <div class="flow-arrow-down">
+      <div class="flow-arrow-pill">
+        <span>MIJOZ REKLAMADAGI "BATAFSIL" TUGMASINI BOSADI</span>
+        <svg class="arrow-svg-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        <span>MINI-SAYT OCHILADI (1 SONIYADA)</span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         2-BOSQICH: MINI-SAYT KO'RINISHI VA ARIZA TO'LDIRISH MAYDONLARI (ALOHIDA)
+         ====================================================================== -->
+    <section class="flow-section gold-border">
+      <div class="sec-top-bar">
+        <div class="sec-step-title">
+          <span class="step-num-badge">2-BOSQICH • MINI-SAYT VA FORMA UI/UX</span>
+          <h2>Mini-Sayt Ko'rinishi va Ariza To'ldirish Maydonlari (Alohida Ko'rinishda)</h2>
+        </div>
+        <span class="sec-sub-note">Manzil: isteksmart.vercel.app</span>
+      </div>
+
+      <div class="screens-showcase-grid">
+        <!-- PHONE 1: MINI-SITE LANDING VIEW -->
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div class="phone-screen-label">1. Mini-Sayt Asosiy Ko'rinishi</div>
+          <div class="phone-inner">
+            <div class="mock-header">
+              <img src="assets/istek-logo.png" alt="ISTEK" />
+              <span class="mock-lang">O'Z | РУ</span>
+            </div>
+            <div class="mock-nav-tabs">
+              <div class="mock-nav-tab active">Asosiy</div>
+              <div class="mock-nav-tab">Katalog</div>
+              <div class="mock-nav-tab">Ariza qoldirish</div>
+            </div>
+            <div style="font-size: 0.82rem; font-weight: 800; color: #fff; line-height: 1.3;">
+              Uyingizga issiqlik, sukunat va <span style="color: var(--gold-light);">zamonaviy ko'rk</span> baxsh etuvchi eshik-romlar
+            </div>
+            <div class="mock-sys-pills">
+              <span class="on">Thermo 80</span>
+              <span>Engelberg</span>
+              <span>Gilyotina</span>
+              <span>Eshiklar</span>
+            </div>
+            <div class="mock-hero-img">
+              <img src="assets/thermo-80.jpg" alt="Thermo 80" />
+              <span class="mock-hero-tag">THERMO 80 • AVSTRIYA</span>
+            </div>
+            <div class="mock-specs-row">
+              <div class="mock-spec-box">
+                <strong>78–80 mm</strong>
+                <span>Termo-profil</span>
+              </div>
+              <div class="mock-spec-box">
+                <strong>46 dB</strong>
+                <span>Shovqin to'sish</span>
+              </div>
+              <div class="mock-spec-box">
+                <strong>3 Qavat</strong>
+                <span>Qalin oyna</span>
+              </div>
+            </div>
+            <div class="mock-glowing-cta">
+              📞 Bepul o'lchovga ariza qoldirish
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR ARROW 1 -> 2 -->
+        <div class="horiz-arrow-col">
+          <span class="horiz-arrow-badge">Tugma bosiladi</span>
+          <svg class="horiz-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+          <span style="font-size: 0.68rem; color: var(--text-muted);">Modal / Forma ochiladi</span>
+        </div>
+
+        <!-- PHONE 2: SEPARATE FORM FIELDS VIEW -->
+        <div class="phone-mockup highlight-gold">
+          <div class="phone-notch"></div>
+          <div class="phone-screen-label">2. Ariza To'ldirish Maydonlari (Alohida)</div>
+          <div class="phone-inner">
+            <div style="font-size: 0.88rem; font-weight: 800; color: #fff;">
+              Bepul o'lchovga ariza qoldirish
+            </div>
+            <div style="font-size: 0.68rem; color: var(--text-muted);">
+              Mutaxassisimiz 10 daqiqa ichida bog'lanib, bepul o'lchov va narx bo'yicha ma'lumot beradi:
+            </div>
+
+            <!-- Field 1: Name -->
+            <div class="mock-form-field">
+              <div class="mock-field-lbl">
+                <span>1-MAYDON: MIJOZ ISMI</span>
+                <span style="color: var(--emerald-light);">✓ Majburiy</span>
+              </div>
+              <div class="mock-field-val">
+                <span>👤 Diyorbek / Olim</span>
+              </div>
+            </div>
+
+            <!-- Field 2: Phone -->
+            <div class="mock-form-field">
+              <div class="mock-field-lbl">
+                <span>2-MAYDON: TELEFON RAQAMI</span>
+                <span style="color: var(--emerald-light);">✓ +998 Maska</span>
+              </div>
+              <div class="mock-field-val">
+                <span>📞 +998 (94) 082-88-08</span>
+              </div>
+            </div>
+
+            <!-- Field 3: Product -->
+            <div class="mock-form-field">
+              <div class="mock-field-lbl">
+                <span>3-MAYDON: MAHSULOT TURI</span>
+                <span>Tanlov (Select)</span>
+              </div>
+              <div class="mock-field-val">
+                <span>🪟 Thermo 80 / Engelberg Romlar</span>
+                <span>▾</span>
+              </div>
+            </div>
+
+            <!-- Field 4: Region -->
+            <div class="mock-form-field">
+              <div class="mock-field-lbl">
+                <span>4-MAYDON: OBYEKT HUDUDI</span>
+                <span>3 ta Asosiy Zona</span>
+              </div>
+              <div class="mock-field-val">
+                <span>📍 Hududni tanlang</span>
+                <span>▾</span>
+              </div>
+              <div class="mock-region-options">
+                <span class="mock-reg-tag">1. Toshkent shahri</span>
+                <span class="mock-reg-tag">2. Tog'li hudud (Dacha)</span>
+                <span class="mock-reg-tag">3. Toshkent viloyati</span>
+              </div>
+            </div>
+
+            <div class="mock-submit-btn">
+              🚀 Menga qo'ng'iroq qiling!
+            </div>
+          </div>
+        </div>
+
+        <!-- CONNECTOR ARROW 2 -> 3 -->
+        <div class="horiz-arrow-col">
+          <span class="horiz-arrow-badge">Xavfsiz API</span>
+          <svg class="horiz-arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+          <span style="font-size: 0.68rem; color: var(--emerald-light); font-weight: 700;">0.5 soniyada CRM-da!</span>
+        </div>
+
+        <!-- PANEL 3: HOW FIELDS MAP TO iSMART CRM -->
+        <div class="mapping-explain-card">
+          <h3>🔒 Xavfsiz Uzatish (/api/lead ➔ iSmart Bazasi)</h3>
+          <p style="font-size: 0.79rem; color: var(--text-muted);">
+            Mijoz arizani bosgan zahoti Vercel Server orqali to'g'ridan-to'g'ri <strong>istek.isteksmart.uz</strong> ning <code>flat_marketing</code> jadvaliga tushadi:
+          </p>
+          <div class="map-row">
+            <span class="map-from">👤 Ismingiz ("Diyorbek")</span>
+            <span class="map-arrow">➔</span>
+            <span class="map-to">ism: "Diyorbek"</span>
+          </div>
+          <div class="map-row">
+            <span class="map-from">📞 Telefon ("+998 94 082-88-08")</span>
+            <span class="map-arrow">➔</span>
+            <span class="map-to">telefon: "+998940828808"</span>
+          </div>
+          <div class="map-row">
+            <span class="map-from">🪟 Mahsulot + 📍 Hudud</span>
+            <span class="map-arrow">➔</span>
+            <span class="map-to">izoh: "[Target Sayt] Thermo 80 | Hudud..."</span>
+          </div>
+          <div class="map-row">
+            <span class="map-from">🎯 Reklama Manbasi</span>
+            <span class="map-arrow">➔</span>
+            <span class="map-to">manba: "Instagram" | turi: "Issiq"</span>
+          </div>
+          <div class="map-row">
+            <span class="map-from">📌 Boshlang'ich Kanban Ustuni</span>
+            <span class="map-arrow">➔</span>
+            <span class="map-to">holat: "Yangi" (☆ YANGI ARIZA)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARROW 2 -> 3 -->
+    <div class="flow-arrow-down">
+      <div class="flow-arrow-pill">
+        <span>ARIZA AVTOMATIK RAVISHDA iSMART KANBAN DOSKASIGA TUSHADI</span>
+        <svg class="arrow-svg-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        <span>OPERATOR BOG'LANISH VA SURISH BOSQICHLARI</span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         3-BOSQICH: iSMART (istek.isteksmart.uz) KANBAN KO'RINISHI VA BOSQICHLAR O'TKAZISH
+         ====================================================================== -->
+    <section class="flow-section gold-border">
+      <div class="sec-top-bar">
+        <div class="sec-step-title">
+          <span class="step-num-badge">3-BOSQICH • iSMART CRM KANBAN</span>
+          <h2>istek.isteksmart.uz — Lidlarning Kanban Ko'rinishi va Bosqichlar Bo'yicha O'tkazish</h2>
+        </div>
+        <span class="sec-sub-note">Har bir lid yo'qolmasdan nazorat qilinadi</span>
+      </div>
+
+      <!-- Real Uploaded Screenshot from User's istek.isteksmart.uz -->
+      <div class="kanban-real-screenshot-box">
+        <div class="screenshot-caption">
+          <span>✅ HAQIQIY KO'RINISH: Mini-saytdan yuborilgan "Olim" va "Diyorbek" arizalari istek.isteksmart.uz Kanban doskasida:</span>
+          <span style="color: var(--emerald-light);">● Jonli integratsiya ishlamoqda</span>
+        </div>
+        <img src="assets/ismart-kanban.jpg" alt="istek.isteksmart.uz Kanban Lidlar" />
+      </div>
+
+      <!-- Detailed 5-Column Kanban Workflow with Operational Rules -->
+      <div class="kanban-flow-5">
+        <!-- Column 1: YANGI ARIZA -->
+        <div class="kb-col col-new">
+          <div class="kb-col-header">
+            <span>☆ 1. YANGI ARIZA</span>
+            <span class="kb-count">2</span>
+          </div>
+          <div class="kb-lead-card">
+            <div class="kb-lead-name">Olim</div>
+            <div class="kb-lead-phone">📞 +998997008545</div>
+            <div class="kb-lead-badges">
+              <span class="kb-ig-badge">Instagram</span>
+              <span style="color:#64748b;">Yangi</span>
+            </div>
+            <div class="kb-lead-note">[Target Sayt] Thermo 80 / Engelberg Romlar | Hudud: Toshkent shahri</div>
+          </div>
+          <div class="kb-lead-card">
+            <div class="kb-lead-name">Diyorbek</div>
+            <div class="kb-lead-phone">📞 +998940828808</div>
+            <div class="kb-lead-badges">
+              <span class="kb-ig-badge">Instagram</span>
+              <span style="color:#64748b;">Yangi</span>
+            </div>
+            <div class="kb-lead-note">[Target Sayt] Thermo 80 / Engelberg Romlar | Hudud: Tog'li hudud (Dacha)</div>
+          </div>
+          <div class="kb-rule-box">
+            <strong>⚡ Operator Vazifasi (5–10 daqiqa):</strong>
+            Ariza tushishi bilan darhol qo'ng'iroq qilinadi, obyekt (Shahar / Dacha / Viloyat) va ehtiyoj aniqlanadi.
+          </div>
+        </div>
+
+        <!-- Column 2: QAYTA BOG'LANISH -->
+        <div class="kb-col col-callback">
+          <div class="kb-col-header">
+            <span>📞 2. QAYTA BOG'LANISH</span>
+            <span class="kb-count">Jarayon</span>
+          </div>
+          <div class="kb-lead-card" style="border-style: dashed;">
+            <div class="kb-lead-name">Mijoz (Maslahatlashmoqda)</div>
+            <div class="kb-lead-note">
+              "Hozir rulda edim, soat 18:00 da tel qiling" yoki "Prorab/oila bilan maslahatlashib olay" degan mijozlar.
+            </div>
+          </div>
+          <div class="kb-rule-box">
+            <strong>🔄 Qachon bu ustunga o'tkaziladi?</strong>
+            Mijoz bilan gaplashildi, qiziqishi bor, ammo aniq o'lchov vaqtini belgilash uchun qayta aloqa vaqti tayinlandi.
+          </div>
+        </div>
+
+        <!-- Column 3: O'TKAZIB YUBORILGAN QO'NG'IROQ -->
+        <div class="kb-col col-missed">
+          <div class="kb-col-header">
+            <span>📵 3. O'TKAZIB YUBORILGAN</span>
+            <span class="kb-count">Nazorat</span>
+          </div>
+          <div class="kb-lead-card" style="border-style: dashed;">
+            <div class="kb-lead-name">Ko'tarmagan mijoz</div>
+            <div class="kb-lead-note">
+              1-qo'ng'iroqda javob bermagan yoki tarmoqdan tashqarida bo'lgan raqamlar yo'qolib ketmasligi uchun shu yerda turadi.
+            </div>
+          </div>
+          <div class="kb-rule-box">
+            <strong>📲 Operator Vazifasi:</strong>
+            1) 2 soatdan so'ng qayta terish;<br/>
+            2) Raqamning Telegramiga ISTEK katalogi va video-taqdimotini yozib qoldirish.
+          </div>
+        </div>
+
+        <!-- Column 4: SIFATLI LID -->
+        <div class="kb-col col-qualified">
+          <div class="kb-col-header">
+            <span>✅ 4. SIFATLI LID (ZAMER!)</span>
+            <span class="kb-count">Maqsad</span>
+          </div>
+          <div class="kb-lead-card" style="border-color: #10b981; background: #ecfdf5;">
+            <div class="kb-lead-name" style="color: #065f46;">✓ Real Xaridor Tasdiqlandi!</div>
+            <div class="kb-lead-note" style="background: #d1fae5; color: #065f46;">
+              • Obyekt manzili olindi (Lokatsiya)<br/>
+              • Bepul o'lchov (Zamer) kuni va vaqti belgilandi<br/>
+              • O'lchovchi mutaxassis biriktirildi!
+            </div>
+          </div>
+          <div class="kb-rule-box" style="background: #064e3b;">
+            <strong>🏆 Asosiy Konversiya Nuqtasi:</strong>
+            Shu ustunga o'tgan har bir lid bo'yicha o'lchovchi obyektga chiqadi va 24 soatda smeta tayyorlanib <strong>SOTUV</strong> bo'limiga o'tadi!
+          </div>
+        </div>
+
+        <!-- Column 5: SIFATSIZ LID -->
+        <div class="kb-col col-junk">
+          <div class="kb-col-header">
+            <span>❌ 5. SIFATSIZ LID</span>
+            <span class="kb-count">Arxiv</span>
+          </div>
+          <div class="kb-lead-card" style="border-style: dashed;">
+            <div class="kb-lead-name">Maqsadsiz murojaat</div>
+            <div class="kb-lead-note">
+              Adashib raqam qoldirgan, yosh bola bosib yuborgan yoki umuman eshik-rom kerak bo'lmagan raqamlar.
+            </div>
+          </div>
+          <div class="kb-rule-box">
+            <strong>📊 Nima uchun o'chirilmaydi?</strong>
+            Targetolog oy yakunida qaysi reklama kreatividan necha % sifatli va necha % sifatsiz lid kelganini tahlil qilishi uchun saqlanadi.
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows explaining column movement -->
+      <div class="kb-transition-strip">
+        <div class="kb-trans-item">
+          <span class="kb-trans-arrow">1 ➔ 4</span>
+          <div><strong>Birinchi qo'ng'iroqdayoq rozi bo'lsa:</strong> <code>Yangi Ariza</code> dan to'g'ridan-to'g'ri <code>Sifatli Lid</code> (Bepul o'lchov) ustuniga o'tkaziladi.</div>
+        </div>
+        <div class="kb-trans-item">
+          <span class="kb-trans-arrow">1 ➔ 2 ➔ 4</span>
+          <div><strong>Maslahatlashib olmoqchi bo'lsa:</strong> Avval <code>Qayta bog'lanish</code> ga, ikkinchi suhbatda zamer belgilangach <code>Sifatli Lid</code> ga o'tkaziladi.</div>
+        </div>
+        <div class="kb-trans-item">
+          <span class="kb-trans-arrow">1 ➔ 3 ➔ 4</span>
+          <div><strong>Ko'tarmasa:</strong> <code>O'tkazib yuborilgan</code> ga o'tkaziladi, qayta aloqa va Telegram orqali bog'lanib <code>Sifatli Lid</code> ga olib o'tiladi.</div>
+        </div>
+        <div class="kb-trans-item">
+          <span class="kb-trans-arrow">4 ➔ 💰</span>
+          <div><strong>Sifatli Liddan Sotuvga:</strong> O'lchov va smeta tasdiqlangach shartnoma tuzilib, iSmart-da <strong>Mijoz / Buyurtma (Sotildi)</strong> ga aylanadi!</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARROW 3 -> 4 -->
+    <div class="flow-arrow-down">
+      <div class="flow-arrow-pill">
+        <span>VORONKA YAKUNI: SIFATLI LIDNI REAL SHARTNOMA VA SOTUVGA AYLANTIRISH</span>
+        <svg class="arrow-svg-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+        <span>6 BOSQICHLI SOTUV VORONKASI</span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         4-BOSQICH: TO'LIQ SOTUV VORONKASI (VORONKALI KELISHI VA SOTUV QILISH)
+         ====================================================================== -->
+    <section class="flow-section gold-border">
+      <div class="sec-top-bar">
+        <div class="sec-step-title">
+          <span class="step-num-badge">4-BOSQICH • TO'LIQ SOTUV VORONKASI</span>
+          <h2>Lidlarning Voronkali Kelishi, Bog'lanish va Sotuvga (Shartnomaga) Olib Chiqish</h2>
+        </div>
+        <span class="sec-sub-note">Target ➔ Mini-Sayt ➔ iSmart CRM ➔ Bepul O'lchov ➔ Smeta ➔ Shartnoma</span>
+      </div>
+
+      <!-- 6 Funnel Stage Cards -->
+      <div class="funnel-wrapper">
+        <!-- Stage 1 -->
+        <div class="funnel-stage">
+          <div class="f-stage-top">
+            <span class="f-step-num">1-BOSQICH</span>
+            <span>📱</span>
+          </div>
+          <div class="f-stage-title">Target Reklama Oqimi</div>
+          <div class="f-stage-desc">
+            Toshkent shahri, Tog'li hudud (Dachalar) va Toshkent viloyatiga yoqilgan Reels/Stories reklamalar maqsadli auditoriyani jalb qiladi.
+          </div>
+          <div class="f-stage-owner">
+            <span>Mas'ul: Targetolog</span>
+            <span>➔</span>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="funnel-stage">
+          <div class="f-stage-top">
+            <span class="f-step-num">2-BOSQICH</span>
+            <span>🌐</span>
+          </div>
+          <div class="f-stage-title">Mini-Saytda Ariza</div>
+          <div class="f-stage-desc">
+            Mijoz <code>isteksmart.vercel.app</code> da Thermo 80, Gilyotina yoki Eshiklarni ko'rib, Ism, Telefon, Mahsulot va Hududini qoldiradi.
+          </div>
+          <div class="f-stage-owner">
+            <span>Avto-tizim (24/7)</span>
+            <span>➔</span>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="funnel-stage">
+          <div class="f-stage-top">
+            <span class="f-step-num">3-BOSQICH</span>
+            <span>⚡</span>
+          </div>
+          <div class="f-stage-title">5–10 Daqiqada Aloqa</div>
+          <div class="f-stage-desc">
+            Lid <code>istek.isteksmart.uz</code> dagi <strong>Yangi Ariza</strong> ustuniga tushadi. Call-markaz mijoz hali saytdan uzoqlashmasdan qo'ng'iroq qiladi.
+          </div>
+          <div class="f-stage-owner">
+            <span>Mas'ul: Call-Markaz</span>
+            <span>➔</span>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="funnel-stage">
+          <div class="f-stage-top">
+            <span class="f-step-num">4-BOSQICH</span>
+            <span>✅</span>
+          </div>
+          <div class="f-stage-title">Sifatli Lid & Lokatsiya</div>
+          <div class="f-stage-desc">
+            Mijoz ehtiyoji tasdiqlanadi, Telegramdan obyekt lokatsiyasi olinadi va kartochka Kanban-da <strong>Sifatli Lid</strong> ustuniga o'tkaziladi.
+          </div>
+          <div class="f-stage-owner">
+            <span>Mas'ul: Sotuv menejeri</span>
+            <span>➔</span>
+          </div>
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="funnel-stage">
+          <div class="f-stage-top">
+            <span class="f-step-num">5-BOSQICH</span>
+            <span>📐</span>
+          </div>
+          <div class="f-stage-title">Bepul O'lchov & Smeta</div>
+          <div class="f-stage-desc">
+            Mutaxassis obyektga (Toshkent sh., Dacha yoki Viloyat) borib lazerli o'lchov oladi, profil namunalarini ko'rsatadi va 24 soatda smeta beradi.
+          </div>
+          <div class="f-stage-owner">
+            <span>Mas'ul: O'lchovchi (Zamer)</span>
+            <span>➔</span>
+          </div>
+        </div>
+
+        <!-- Stage 6 -->
+        <div class="funnel-stage final-sale">
+          <div class="f-stage-top">
+            <span class="f-step-num">6-BOSQICH • NATIJA</span>
+            <span>🏆</span>
+          </div>
+          <div class="f-stage-title">Shartnoma va Sotuv!</div>
+          <div class="f-stage-desc">
+            Smeta tasdiqlanadi, rasmiy shartnoma va avans qabul qilinadi. ISTEK zavodida ishlab chiqarilib, bepul yetkaziladi va o'rnatiladi!
+          </div>
+          <div class="f-stage-owner" style="color: #6ee7b7;">
+            <span>HOLAT: SOTILDI (CRM)</span>
+            <span>✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual Tapered Funnel Chart -->
+      <div class="visual-funnel-bars">
+        <div class="vf-bar vf-1">
+          <span>1. INSTAGRAM TARGET QAMROVI (Toshkent sh. + Tog'li Dachalar + Toshkent vil.)</span>
+          <span>100% Oqim</span>
+        </div>
+        <div class="vf-bar vf-2">
+          <span>2. MINI-SAYTGA O'TISH VA KATALOG KO'RISH (isteksmart.vercel.app)</span>
+          <span>Qiziquvchilar</span>
+        </div>
+        <div class="vf-bar vf-3">
+          <span>3. ARIZA QOLDIRGANLAR ➔ iSMART CRM "☆ YANGI ARIZA" USTUNI</span>
+          <span>Issiq Lidlar</span>
+        </div>
+        <div class="vf-bar vf-4">
+          <span>4. BOG'LANISH VA SARALASH ("📞 Qayta bog'lanish" ➔ "✅ SIFATLI LID")</span>
+          <span>Saralangan Mijozlar</span>
+        </div>
+        <div class="vf-bar vf-5">
+          <span>5. OBYEKTDA BEPUL LAZERLI O'LCHOV (ZAMER) VA 24 SOATDA ANIQ SMETA</span>
+          <span>Real Taklif</span>
+        </div>
+        <div class="vf-bar vf-6">
+          <span>6. SHARTNOMA, ISHLAB CHIQARISH VA O'RNATISH (💰 SOTUV!)</span>
+          <span>Maksimal Daromad</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

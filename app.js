@@ -412,7 +412,7 @@ async function submitLeadForm(e, source) {
   const nameInput = document.getElementById(isModal ? 'm-name' : 'p3-name');
   const phoneInput = document.getElementById(isModal ? 'm-phone' : 'p3-phone');
   const productSelect = document.getElementById(isModal ? 'm-product' : 'p3-product');
-  const regionSelect = document.getElementById('p3-region');
+  const regionSelect = document.getElementById(isModal ? 'm-region' : 'p3-region');
   const errName = document.getElementById(isModal ? 'm-err-name' : 'p3-err-name');
   const errPhone = document.getElementById(isModal ? 'm-err-phone' : 'p3-err-phone');
 
@@ -446,7 +446,7 @@ async function submitLeadForm(e, source) {
     name: nameVal,
     phone: phoneInput.value,
     product: productSelect ? productSelect.value : 'Eshik va Rom',
-    region: (!isModal && regionSelect && regionSelect.value) ? regionSelect.value : 'Toshkent / O\'zbekiston',
+    region: (regionSelect && regionSelect.value) ? regionSelect.value : 'Toshkent shahri',
     sourcePage: `page-${currentPage}`,
     utm: utmData,
     createdAt: new Date().toISOString()
@@ -456,7 +456,7 @@ async function submitLeadForm(e, source) {
     const saved = JSON.parse(localStorage.getItem('istek_leads') || '[]');
     saved.push(leadData);
     localStorage.setItem('istek_leads', JSON.stringify(saved));
-  } catch (_) {}
+  } catch (_) { }
 
   // Xavfsiz Vercel Serverless Backend (/api/lead) orqali ERP/CRM va Telegramga yuborish
   try {
@@ -465,7 +465,7 @@ async function submitLeadForm(e, source) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(leadData)
     });
-  } catch (_) {}
+  } catch (_) { }
 
   // Show confirmation state
   const modal = document.getElementById('quick-lead-modal');
