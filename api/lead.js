@@ -5,7 +5,7 @@
 
 const DEFAULT_SUPABASE_URL = 'https://edamkzvtytofcsvfswxn.supabase.co';
 const DEFAULT_TABLE = 'flat_marketing';
-const DEFAULT_ORG_ID = 'bef70bc5-8fa4-4e37-8674-aeaf32b33a70';
+const DEFAULT_ORG_ID = '8ad71da8-b359-417f-b7d9-9042a371daee';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
