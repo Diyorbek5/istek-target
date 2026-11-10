@@ -5,6 +5,7 @@
 
 const DEFAULT_SUPABASE_URL = 'https://edamkzvtytofcsvfswxn.supabase.co';
 const DEFAULT_TABLE = 'flat_marketing';
+const DEFAULT_ORG_ID = 'bef70bc5-8fa4-4e37-8674-aeaf32b33a70';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -42,34 +43,12 @@ export default async function handler(req, res) {
     const supabaseUrl = (process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL).replace(/\/$/, '');
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
     const tableName = process.env.SUPABASE_LEADS_TABLE || DEFAULT_TABLE;
+    const orgId = process.env.SUPABASE_ORG_ID || DEFAULT_ORG_ID;
 
     const results = { supabaseSaved: false };
 
     if (supabaseUrl && supabaseKey) {
-      // 3. organization_id ni aniqlash (env dan oladi yoki jadvaldagi mavjud qatordan avtomatik topadi)
-      let orgId = process.env.SUPABASE_ORG_ID || null;
-
-      if (!orgId) {
-        try {
-          const orgRes = await fetch(
-            `${supabaseUrl}/rest/v1/${tableName}?select=organization_id&organization_id=not.is.null&limit=1`,
-            {
-              headers: {
-                'apikey': supabaseKey,
-                'Authorization': `Bearer ${supabaseKey}`
-              }
-            }
-          );
-          if (orgRes.ok) {
-            const rows = await orgRes.json();
-            if (Array.isArray(rows) && rows.length > 0 && rows[0].organization_id) {
-              orgId = rows[0].organization_id;
-            }
-          }
-        } catch (_) {}
-      }
-
-      // 4. "flat_marketing" jadvalining aniq ustunlariga mos qator:
+      // 3. "flat_marketing" jadvalining aniq ustunlariga mos qator:
       const flatMarketingRow = {
         rowNum: timestampMs,
         id: `TARGET-${shortCode}`,
@@ -83,7 +62,7 @@ export default async function handler(req, res) {
         turi: 'Issiq',
         tavsif: utm?.utm_campaign ? `Kampaniya: ${utm.utm_campaign}` : null,
         sotuv_id: null,
-        ...(orgId ? { organization_id: orgId } : {})
+        organization_id: orgId
       };
 
       const sbRes = await fetch(`${supabaseUrl}/rest/v1/${tableName}`, {
@@ -92,6 +71,7 @@ export default async function handler(req, res) {
           'Content-Type': 'application/json',
           'apikey': supabaseKey,
           'Authorization': `Bearer ${supabaseKey}`,
+          'User-Agent': 'istek-target-server/1.0',
           'Prefer': 'return=minimal'
         },
         body: JSON.stringify(flatMarketingRow)
@@ -101,6 +81,8 @@ export default async function handler(req, res) {
       if (!sbRes.ok) {
         results.supabaseError = await sbRes.text();
       }
+    } else {
+      results.supabaseError = 'Missing SUPABASE_SERVICE_ROLE_KEY env variable';
     }
 
     return res.status(200).json({ ok: true, ...results });
