@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ISTEK.UZ — Premium Eshik va Rom Tizimlari (Thermo 80, Engelberg, Gilyotina)</title>
+  <meta name="description" content="ISTEK.UZ — Engelberg Thermo 80, Gilyotina avtomatik panorama tizimlari, Hebeschiebe vitrajlar va Premium eshiklar. Bepul o'lchov, bepul yetkazib berish va rasmiy kafolat!" />
+  <meta name="theme-color" content="#070b12" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=6" />
+  <link rel="stylesheet" href="styles.css?v=6" />
+</head>
+<body>
+  <!-- Reusable Luxury Gradient Definitions for All Vector Icons -->
+  <svg width="0" height="0" style="position:absolute; visibility:hidden;" aria-hidden="true">
+    <defs>
+      <linearGradient id="lux-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f5e6c8" />
+        <stop offset="50%" stop-color="#cbb282" />
+        <stop offset="100%" stop-color="#9a7d46" />
+      </linearGradient>
+      <linearGradient id="lux-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6ee7b7" />
+        <stop offset="100%" stop-color="#00b341" />
+      </linearGradient>
+      <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#f09433" />
+        <stop offset="25%" stop-color="#e6683c" />
+        <stop offset="50%" stop-color="#dc2743" />
+        <stop offset="75%" stop-color="#cc2366" />
+        <stop offset="100%" stop-color="#bc1888" />
+      </linearGradient>
+      <linearGradient id="tg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" />
+        <stop offset="100%" stop-color="#0284c7" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Subtle Ambient Dust Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <main class="app-shell">
+
+    <!-- 1. TOP SERVICE BAR -->
+    <div class="top-service-bar">
+      <span class="status-dot"></span>
+      <span data-i18n="topBarText">BEPUL O'LCHOV • BEPUL YETKAZIB BERISH • RASMIY KAFOLAT VA SERVIS</span>
+    </div>
+
+    <!-- 2. STICKY HEADER WITH OFFICIAL ISTEK LOGO + TELEGRAM + INSTAGRAM + UZ/RU -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#page-1" class="brand-identity" onclick="switchPage(1); return false;">
+          <img src="assets/istek-logo.png" alt="ISTEK" class="brand-logo-img" />
+        </a>
+
+        <div class="header-right">
+          <a href="https://t.me/istek_uz" target="_blank" rel="noopener" class="social-pill-link social-tg" aria-label="Telegram">
+            <svg class="brand-svg-icon" viewBox="0 0 24 24" fill="url(#tg-grad)">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            <span>Telegram</span>
+          </a>
+          <a href="https://instagram.com/istek.uz" target="_blank" rel="noopener" class="social-pill-link social-ig" aria-label="Instagram">
+            <svg class="brand-svg-icon" viewBox="0 0 24 24" fill="url(#ig-grad)">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button type="button" class="lang-btn active" id="lang-uz" onclick="setLanguage('uz')">O'Z</button>
+            <button type="button" class="lang-btn" id="lang-ru" onclick="setLanguage('ru')">РУ</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. 3-PAGE NAVIGATION TABS WITH LUXURY VECTOR ICONS -->
+    <nav class="page-nav-tabs" aria-label="Sahifalar">
+      <button type="button" class="nav-tab-item active" id="tab-btn-1" onclick="switchPage(1)">
+        <svg class="tab-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span data-i18n="tab1">Asosiy</span>
+      </button>
+      <button type="button" class="nav-tab-item" id="tab-btn-2" onclick="switchPage(2)">
+        <svg class="tab-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/>
+        </svg>
+        <span data-i18n="tab2">Katalog & Servis</span>
+      </button>
+      <button type="button" class="nav-tab-item" id="tab-btn-3" onclick="switchPage(3)">
+        <svg class="tab-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span data-i18n="tab3">Ariza qoldirish</span>
+      </button>
+    </nav>
+
+    <!-- ======================================================================
+         SAHIFA 1: REALISTIC ARCHITECTURAL SHOWCASE
+         ====================================================================== -->
+    <section class="site-page active-page" id="page-1">
+      <div class="hero-header-block">
+        <div class="hero-eyebrow-pill">
+          <svg class="eyebrow-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span data-i18n="heroBadge">ISTEK.UZ • PREMIUM ARCHITECTURAL SYSTEMS</span>
+        </div>
+        <h1 class="hero-main-heading" data-i18n="heroTitle">
+          XONADONINGIZ UCHUN PREMIUM <span class="gold-text">ESHIK VA ROM</span> TIZIMLARI
+        </h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Engelberg, Thermo 80, Gilyotina va Hebeschiebe panorama tizimlari — yuqori issiqlik hamda shovqin izolyatsiyasi bilan.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE REALISTIC 3D PRODUCT SHOWCASE -->
+      <div class="showcase-3d-wrapper">
+        <div class="showcase-3d-card" id="hero-3d-card">
+          <div class="showcase-system-tabs">
+            <button type="button" class="sys-tab-btn active" onclick="selectHeroShowcase(0, this)">Thermo 80</button>
+            <button type="button" class="sys-tab-btn" onclick="selectHeroShowcase(1, this)">Engelberg</button>
+            <button type="button" class="sys-tab-btn" onclick="selectHeroShowcase(2, this)">Gilyotina</button>
+            <button type="button" class="sys-tab-btn" onclick="selectHeroShowcase(3, this)">Eshiklar</button>
+          </div>
+
+          <div class="showcase-visual-frame">
+            <span class="showcase-tag-overlay" id="sc-badge">THERMO 80 SERIES • 3-QAVAT OYNA</span>
+            <img
+              src="assets/thermo-80.jpg"
+              alt="Thermo 80 va Engelberg Rom Tizimlari"
+              class="showcase-img"
+              id="sc-image"
+            />
+          </div>
+
+          <div class="showcase-info-panel">
+            <div class="showcase-title-row">
+              <h2 class="showcase-sys-title" id="sc-title">Thermo 80 / 78 Alyumin Profil</h2>
+              <span class="showcase-origin-badge" id="sc-origin">Rasmiy Kafolat</span>
+            </div>
+            <p class="showcase-sys-desc" id="sc-desc">
+              Ko'p kamerali poliamid termo-ko'prikli alyumin tizim. Qishki qahraton va yozgi jaziramadan 100% himoya qiladi, ko'cha shovqinini o'tkazmaydi.
+            </p>
+
+            <div class="showcase-specs-grid">
+              <div class="spec-mini-box">
+                <div class="spec-mini-val" id="sc-spec1-val">3 Qavatli</div>
+                <div class="spec-mini-lbl" id="sc-spec1-lbl">Energiya tejovchi oyna</div>
+              </div>
+              <div class="spec-mini-box">
+                <div class="spec-mini-val" id="sc-spec2-val">Germaniya</div>
+                <div class="spec-mini-lbl" id="sc-spec2-lbl">Roto / Siegenia furnitura</div>
+              </div>
+              <div class="spec-mini-box">
+                <div class="spec-mini-val" id="sc-spec3-val">Bepul</div>
+                <div class="spec-mini-lbl" id="sc-spec3-lbl">O'lchov va yetkazish</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Clean Service Guarantee Pillars with Custom Duotone Icons -->
+      <div class="stats-trio-grid">
+        <div class="stat-clean-card">
+          <div class="pillar-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/>
+              <path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/>
+            </svg>
+          </div>
+          <div class="stat-clean-num" data-i18n="pillar1Title">BEPUL</div>
+          <div class="stat-clean-text" data-i18n="pillar1Desc">Mutaxassis o'lchovi va maslahati</div>
+        </div>
+
+        <div class="stat-clean-card">
+          <div class="pillar-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="stat-clean-num" data-i18n="pillar2Title">YETKAZISH</div>
+          <div class="stat-clean-text" data-i18n="pillar2Desc">Bepul yetkazib berish va o'rnatish</div>
+        </div>
+
+        <div class="stat-clean-card">
+          <div class="pillar-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <div class="stat-clean-num" data-i18n="pillar3Title">KAFOLAT</div>
+          <div class="stat-clean-text" data-i18n="pillar3Desc">Rasmiy shartnoma va doimiy servis</div>
+        </div>
+      </div>
+
+      <!-- Direct Social Links -->
+      <div class="social-connect-row">
+        <a href="https://t.me/istek_uz" target="_blank" rel="noopener" class="social-card-btn social-card-tg">
+          <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#tg-grad)">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span>Telegram</span>
+        </a>
+        <a href="https://instagram.com/istek.uz" target="_blank" rel="noopener" class="social-card-btn social-card-ig">
+          <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#ig-grad)">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SAHIFA 2: REALISTIC PREMIUM CATALOG & 4 SERVICE GUARANTEES
+         ====================================================================== -->
+    <section class="site-page" id="page-2">
+      <div class="section-head">
+        <span class="section-badge" data-i18n="catBadge">PREMIUM MAHSULOTLAR KATALOGI</span>
+        <h2 class="section-title" data-i18n="catMainTitle">Bizning Eshik va Rom Tizimlarimiz</h2>
+        <p class="section-desc" data-i18n="catMainDesc">
+          O'zingizga mos tizimni tanlang va darhol bepul o'lchov hamda hisob-kitob uchun buyurtma bering:
+        </p>
+      </div>
+
+      <!-- REALISTIC PHOTO PRODUCT CARDS -->
+      <div class="premium-catalog-list">
+
+        <!-- 1. Thermo 80 & Engelberg -->
+        <article class="catalog-item-card">
+          <div class="cat-img-box">
+            <span class="cat-series-pill">ENGELBERG • THERMO 80 / 78</span>
+            <img src="assets/thermo-80.jpg" alt="Engelberg Thermo 80 Alyumin Rom" loading="lazy" />
+          </div>
+          <div class="cat-body">
+            <h3 class="cat-title" data-i18n="c1Title">Thermo 80 & Engelberg Termo Romlar</h3>
+            <p class="cat-desc" data-i18n="c1Desc">
+              Yuqori issiqlik va shovqin izolyatsiyasiga ega ko'p kamerali termo-alyumin va PVX profillar. Qishda issiqni, yozda salqinlikni saqlaydi.
+            </p>
+            <div class="cat-features-tags">
+              <span class="cat-feat-chip">Termo-ko'prik 80 mm</span>
+              <span class="cat-feat-chip">3-qavatli oyna</span>
+              <span class="cat-feat-chip">Nemis furnitura</span>
+            </div>
+            <button type="button" class="cat-order-btn" onclick="openQuickLeadModal('Thermo 80 / Engelberg Romlar')">
+              <svg class="btn-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span data-i18n="catOrderBtn">Bepul o'lchovga ariza qoldirish</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 2. Gilyotina (Guillotine) Motorized Panoramic System -->
+        <article class="catalog-item-card">
+          <div class="cat-img-box">
+            <span class="cat-series-pill">GILYOTINA • AVTOMATIK TIZIM</span>
+            <img src="assets/gilyotina-lux.jpg" alt="Gilyotina Avtomatik Panorama Oynalar" loading="lazy" />
+          </div>
+          <div class="cat-body">
+            <h3 class="cat-title" data-i18n="c2Title">Gilyotina (Guillotine) Panorama Tizimi</h3>
+            <p class="cat-desc" data-i18n="c2Desc">
+              Masofaviy pult bilan vertikal ochilib-yopiladigan motorli panorama oynalar. Terrasa, yozgi oshxona, ayvon va restoranlar uchun ideal yechim.
+            </p>
+            <div class="cat-features-tags">
+              <span class="cat-feat-chip">Pultli avtomat motor</span>
+              <span class="cat-feat-chip">Toblangan xavfsiz oyna</span>
+              <span class="cat-feat-chip">Shamol va yomg'irdan himoya</span>
+            </div>
+            <button type="button" class="cat-order-btn" onclick="openQuickLeadModal('Gilyotina Avtomatik Panorama Tizimi')">
+              <svg class="btn-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span data-i18n="catOrderBtn">Bepul o'lchovga ariza qoldirish</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 3. Hebeschiebe & Sliding Panoramic Systems -->
+        <article class="catalog-item-card">
+          <div class="cat-img-box">
+            <span class="cat-series-pill">HEBESCHIEBE • SURILADIGAN VITRAJ</span>
+            <img src="assets/hero-villa.png" alt="Hebeschiebe va Panorama Vitraj Romlar" loading="lazy" />
+          </div>
+          <div class="cat-body">
+            <h3 class="cat-title" data-i18n="c3Title">Hebeschiebe & Panorama Vitraj Tizimlari</h3>
+            <p class="cat-desc" data-i18n="c3Desc">
+              Hovli, kottej va pentxauslar uchun katta o'lchamli, barmoq uchida ravon suriluvchi germetik panorama vitraj eshik-romlar.
+            </p>
+            <div class="cat-features-tags">
+              <span class="cat-feat-chip">Ravon suriluvchi mexanizm</span>
+              <span class="cat-feat-chip">Keng panorama ko'rinish</span>
+              <span class="cat-feat-chip">Yuqori germetiklik</span>
+            </div>
+            <button type="button" class="cat-order-btn" onclick="openQuickLeadModal('Hebeschiebe va Panorama Vitrajlar')">
+              <svg class="btn-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span data-i18n="catOrderBtn">Bepul o'lchovga ariza qoldirish</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- 4. Premium Thermo & Smart Doors -->
+        <article class="catalog-item-card">
+          <div class="cat-img-box">
+            <span class="cat-series-pill">PREMIUM DOORS • THERMO & SMART</span>
+            <img src="assets/premium-door.jpg" alt="Premium Thermo va Smart Eshiklar" loading="lazy" />
+          </div>
+          <div class="cat-body">
+            <h3 class="cat-title" data-i18n="c4Title">Premium Thermo va Smart Eshiklar</h3>
+            <p class="cat-desc" data-i18n="c4Desc">
+              Zamonaviy hovli va xonadonlar uchun mustahkam termo-alyumin, shpon va Smart-qulfli (FaceID / barmoq izi) kirish hamda ichki eshiklar.
+            </p>
+            <div class="cat-features-tags">
+              <span class="cat-feat-chip">Quyosh va namga chidamli</span>
+              <span class="cat-feat-chip">Smart-Lock / Magnit qulf</span>
+              <span class="cat-feat-chip">Individual dizayn</span>
+            </div>
+            <button type="button" class="cat-order-btn" onclick="openQuickLeadModal('Premium Thermo va Smart Eshiklar')">
+              <svg class="btn-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span data-i18n="catOrderBtn">Bepul o'lchovga ariza qoldirish</span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- 4 SERVICE GUARANTEES WITH BESPOKE LUXURY VECTOR ICONS -->
+      <div class="section-head">
+        <span class="section-badge" data-i18n="srvBadge">ISTEK SERVIS AFZALLIKLARI</span>
+        <h2 class="section-title" data-i18n="srvMainTitle">Mijozlarimiz uchun bepul xizmatlar va kafolat</h2>
+      </div>
+
+      <div class="service-cards-stack">
+        <!-- Service 1: Laser Measure & Design -->
+        <div class="service-white-card">
+          <div class="srv-top-row">
+            <div class="srv-icon-square">
+              <svg class="srv-lux-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 3 3 21"/><path d="M21 3h-6"/><path d="M21 3v6"/><path d="M3 21h6"/><path d="M3 21v-6"/>
+                <rect x="4" y="4" width="7" height="7" rx="1.5" stroke="url(#lux-emerald)"/>
+              </svg>
+            </div>
+            <span class="srv-badge-pill" data-i18n="freeServiceTag">BEPUL XIZMAT</span>
+          </div>
+          <h3 class="srv-title" data-i18n="s1Title">Bepul o'lchov va dizayn maslahat</h3>
+          <p class="srv-text" data-i18n="s1Desc">
+            Tajribali mutaxassisimiz uyingizga borib aniq lazerli o'lchov oladi va fasadingizga eng mos profil hamda ranglarni tavsiya qiladi.
+          </p>
+          <button type="button" class="srv-action-link" onclick="openQuickLeadModal('Bepul o\'lchov chaqirish')">
+            <span data-i18n="orderCallLink">Bepul o'lchovga ariza qoldirish</span>
+            <svg class="arrow-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Service 2: 24h Estimate -->
+        <div class="service-white-card">
+          <div class="srv-top-row">
+            <div class="srv-icon-square">
+              <svg class="srv-lux-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2.5"/>
+                <line x1="8" y1="6" x2="16" y2="6" stroke="url(#lux-emerald)" stroke-width="2"/>
+                <line x1="8" y1="11" x2="10" y2="11"/><line x1="14" y1="11" x2="16" y2="11"/>
+                <line x1="8" y1="15" x2="10" y2="15"/><line x1="14" y1="15" x2="16" y2="15"/>
+                <line x1="8" y1="18.5" x2="16" y2="18.5"/>
+              </svg>
+            </div>
+            <span class="srv-badge-pill" data-i18n="freeServiceTag">BEPUL XIZMAT</span>
+          </div>
+          <h3 class="srv-title" data-i18n="s2Title">Aniq smeta 24 soat ichida</h3>
+          <p class="srv-text" data-i18n="s2Desc">
+            Obyektingiz o'lchamlari bo'yicha barcha profil, oyna va furnitura detallarini shaffof hisoblab, aniq smeta taqdim etamiz.
+          </p>
+          <button type="button" class="srv-action-link" onclick="openQuickLeadModal('Aniq smeta hisoblash')">
+            <span data-i18n="orderCallLink">Bepul o'lchovga ariza qoldirish</span>
+            <svg class="arrow-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Service 3: Free Delivery & Installation -->
+        <div class="service-white-card">
+          <div class="srv-top-row">
+            <div class="srv-icon-square">
+              <svg class="srv-lux-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13" rx="2"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" stroke="url(#lux-emerald)"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <span class="srv-badge-pill" data-i18n="freeDeliveryTag">BEPUL YETKAZISH</span>
+          </div>
+          <h3 class="srv-title" data-i18n="s3Title">Bepul yetkazib berish va professional montaj</h3>
+          <p class="srv-text" data-i18n="s3Desc">
+            Tayyor bo'lgan eshik va romlarni maxsus transportda xavfsiz yetkazib beramiz va standartlar asosida germetik o'rnatamiz.
+          </p>
+          <button type="button" class="srv-action-link" onclick="openQuickLeadModal('Bepul yetkazib berish va montaj')">
+            <span data-i18n="orderCallLink">Bepul o'lchovga ariza qoldirish</span>
+            <svg class="arrow-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+
+        <!-- Service 4: Official Warranty & Service -->
+        <div class="service-white-card">
+          <div class="srv-top-row">
+            <div class="srv-icon-square">
+              <svg class="srv-lux-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4" stroke="url(#lux-emerald)" stroke-width="2.2"/>
+              </svg>
+            </div>
+            <span class="srv-badge-pill" data-i18n="warrantyTag">RASMIY KAFOLAT</span>
+          </div>
+          <h3 class="srv-title" data-i18n="s4Title">Uzoq muddatli kafolat va servis</h3>
+          <p class="srv-text" data-i18n="s4Desc">
+            Barcha profil, oynapaket va mexanizmlarga rasmiy shartnoma asosida kafolat hamda keyingi servis xizmati ko'rsatiladi.
+          </p>
+          <button type="button" class="srv-action-link" onclick="openQuickLeadModal('Kafolat va servis bo\'yicha maslahat')">
+            <span data-i18n="orderCallLink">Bepul o'lchovga ariza qoldirish</span>
+            <svg class="arrow-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SAHIFA 3: DIRECT LEAD CAPTURE FORM
+         ====================================================================== -->
+    <section class="site-page" id="page-3">
+      <div class="lead-form-card">
+        <h2 class="lead-form-heading" data-i18n="formTitle">
+          Bepul o'lchov va mutaxassis maslahati uchun raqamingizni qoldiring
+        </h2>
+        <p class="lead-form-sub" data-i18n="formSubtitle">
+          Mutaxassisimiz siz bilan bog'lanib, barcha savollaringizga javob beradi va bepul o'lchov vaqtini belgilaydi.
+        </p>
+
+        <div class="service-perks-mini">
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 21"/><path d="M21 3h-6"/><path d="M21 3v6"/></svg>
+            <span data-i18n="perk1">Bepul o'lchov</span>
+          </div>
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span data-i18n="perk2">Bepul yetkazish</span>
+          </div>
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <span data-i18n="perk3">Rasmiy kafolat</span>
+          </div>
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <span data-i18n="perk4">Sifatli servis</span>
+          </div>
+        </div>
+
+        <form id="page3-lead-form" novalidate onsubmit="submitLeadForm(event, 'page3')">
+          <div class="form-field-wrap">
+            <input
+              type="text"
+              id="p3-name"
+              class="clean-line-input"
+              placeholder="Ismingiz"
+              data-i18n-placeholder="namePlaceholder"
+              autocomplete="name"
+            />
+            <div class="error-text" id="p3-err-name" data-i18n="requiredMsg">Ushbu maydon to'ldirilishi shart</div>
+          </div>
+
+          <div class="form-field-wrap">
+            <input
+              type="tel"
+              id="p3-phone"
+              class="clean-line-input phone-mask-input"
+              value="+998 "
+              placeholder="+998 (__) ___-__-__"
+              autocomplete="tel"
+            />
+            <div class="error-text" id="p3-err-phone" data-i18n="requiredPhoneMsg">Telefon raqamingizni to'liq kiriting</div>
+          </div>
+
+          <div class="form-field-wrap">
+            <select id="p3-product" class="clean-line-select" aria-label="Mahsulot turi">
+              <option value="Thermo 80 / Engelberg Romlar" data-i18n="opt1">Thermo 80 / Engelberg Romlar</option>
+              <option value="Gilyotina Avtomatik Panorama Tizimi" data-i18n="opt2">Gilyotina Avtomatik Panorama Tizimi</option>
+              <option value="Hebeschiebe / Suriladigan Vitrajlar" data-i18n="opt3">Hebeschiebe / Suriladigan Vitrajlar</option>
+              <option value="Premium Thermo va Smart Eshiklar" data-i18n="opt4">Premium Thermo va Smart Eshiklar</option>
+              <option value="Kompleks (Butun uy uchun Eshik va Rom)" data-i18n="opt5">Kompleks (Butun uy uchun Eshik va Rom)</option>
+            </select>
+          </div>
+
+          <div class="form-field-wrap">
+            <select id="p3-region" class="clean-line-select" aria-label="Hudud">
+              <option value="" disabled selected data-i18n="regionPlaceholder">Hududni tanlang</option>
+              <option value="Toshkent shahri">Toshkent shahri</option>
+              <option value="Toshkent viloyati">Toshkent viloyati</option>
+              <option value="Samarqand">Samarqand</option>
+              <option value="Farg'ona / Andijon / Namangan">Farg'ona / Andijon / Namangan</option>
+              <option value="Buxoro / Navoiy">Buxoro / Navoiy</option>
+              <option value="Qashqadaryo / Surxondaryo">Qashqadaryo / Surxondaryo</option>
+              <option value="Jizzax / Sirdaryo">Jizzax / Sirdaryo</option>
+              <option value="Xorazm / Qoraqalpog'iston">Xorazm / Qoraqalpog'iston</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-blue" data-i18n="submitCallBtn">
+            Menga qo'ng'iroq qiling!
+          </button>
+        </form>
+
+        <p class="form-bottom-note" data-i18n="formBottomNote">
+          Bepul o'lchov, yetkazib berish va maslahat berish xizmatlari Toshkent hamda viloyatlar bo'ylab amal qiladi.
+        </p>
+      </div>
+
+      <!-- Direct Social Channels on Page 3 -->
+      <div class="social-connect-row">
+        <a href="https://t.me/istek_uz" target="_blank" rel="noopener" class="social-card-btn social-card-tg">
+          <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#tg-grad)">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span>Telegram</span>
+        </a>
+        <a href="https://instagram.com/istek.uz" target="_blank" rel="noopener" class="social-card-btn social-card-ig">
+          <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#ig-grad)">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         STICKY BOTTOM BAR (On ALL 1-2-3 Pages: Immediately Captures Lead!)
+         ====================================================================== -->
+    <div class="sticky-bottom-bar">
+      <button type="button" class="dock-direct-btn" onclick="openQuickLeadModal('Pastki tugma — Tezkor qo\'ng\'iroq')">
+        <svg class="btn-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+        <span data-i18n="stickyCallBtn">Bepul o'lchovga ariza qoldirish</span>
+      </button>
+      <a href="https://t.me/istek_uz" target="_blank" rel="noopener" class="dock-icon-btn dock-tg" title="Telegram" aria-label="Telegram">
+        <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#tg-grad)">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </a>
+      <a href="https://instagram.com/istek.uz" target="_blank" rel="noopener" class="dock-icon-btn dock-ig" title="Instagram" aria-label="Instagram">
+        <svg class="brand-svg-icon-lg" viewBox="0 0 24 24" fill="url(#ig-grad)">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+        </svg>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       INSTANT LEAD CAPTURE MODAL
+       ======================================================================== -->
+  <div class="modal-overlay" id="quick-lead-modal" role="dialog" aria-modal="true">
+    <div class="quick-modal-box">
+      <button type="button" class="modal-close-x" onclick="closeQuickLeadModal()" aria-label="Yopish">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div id="modal-form-view">
+        <h3 class="lead-form-heading" style="padding-right: 20px;" data-i18n="modalFormTitle">
+          Bepul o'lchovga ariza qoldirish
+        </h3>
+        <p class="lead-form-sub" id="modal-selected-topic" data-i18n="modalFormSub">
+          Raqamingizni qoldiring — mutaxassisimiz 10 daqiqa ichida bog'lanib, bepul o'lchov va narx bo'yicha ma'lumot beradi.
+        </p>
+
+        <div class="service-perks-mini">
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 21"/><path d="M21 3h-6"/><path d="M21 3v6"/></svg>
+            <span data-i18n="perk1">Bepul o'lchov</span>
+          </div>
+          <div class="perk-mini-item">
+            <svg class="perk-svg" viewBox="0 0 24 24" fill="none" stroke="url(#lux-emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <span data-i18n="perk2">Bepul yetkazish</span>
+          </div>
+        </div>
+
+        <form id="modal-lead-form" novalidate onsubmit="submitLeadForm(event, 'modal')">
+          <div class="form-field-wrap">
+            <input
+              type="text"
+              id="m-name"
+              class="clean-line-input"
+              placeholder="Ismingiz"
+              data-i18n-placeholder="namePlaceholder"
+              autocomplete="name"
+            />
+            <div class="error-text" id="m-err-name" data-i18n="requiredMsg">Ushbu maydon to'ldirilishi shart</div>
+          </div>
+
+          <div class="form-field-wrap">
+            <input
+              type="tel"
+              id="m-phone"
+              class="clean-line-input phone-mask-input"
+              value="+998 "
+              placeholder="+998 (__) ___-__-__"
+              autocomplete="tel"
+            />
+            <div class="error-text" id="m-err-phone" data-i18n="requiredPhoneMsg">Telefon raqamingizni to'liq kiriting</div>
+          </div>
+
+          <div class="form-field-wrap">
+            <select id="m-product" class="clean-line-select" aria-label="Mahsulot turi">
+              <option value="Thermo 80 / Engelberg Romlar" data-i18n="opt1">Thermo 80 / Engelberg Romlar</option>
+              <option value="Gilyotina Avtomatik Panorama Tizimi" data-i18n="opt2">Gilyotina Avtomatik Panorama Tizimi</option>
+              <option value="Hebeschiebe / Suriladigan Vitrajlar" data-i18n="opt3">Hebeschiebe / Suriladigan Vitrajlar</option>
+              <option value="Premium Thermo va Smart Eshiklar" data-i18n="opt4">Premium Thermo va Smart Eshiklar</option>
+              <option value="Kompleks (Butun uy uchun Eshik va Rom)" data-i18n="opt5">Kompleks (Butun uy uchun Eshik va Rom)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-blue" data-i18n="submitCallBtn">
+            Menga qo'ng'iroq qiling!
+          </button>
+        </form>
+      </div>
+
+      <!-- Thank You State Inside Modal -->
+      <div id="modal-success-view" style="display: none; text-align: center; padding: 14px 4px;">
+        <div class="success-icon-ring">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#lux-emerald)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+        </div>
+        <h3 class="lead-form-heading" data-i18n="successTitle">Arizangiz qabul qilindi!</h3>
+        <p class="lead-form-sub" style="margin-top: 6px;" data-i18n="successDesc">
+          Tez orada ISTEK.UZ mutaxassisi siz bilan bog'lanadi. Shuningdek, bizning Telegram va Instagram sahifalarimiz orqali ham barcha ishlarimizni kuzatishingiz mumkin:
+        </p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0;">
+          <a href="https://t.me/istek_uz" target="_blank" rel="noopener" class="social-card-btn social-card-tg" style="text-decoration: none;">
+            <svg class="brand-svg-icon" viewBox="0 0 24 24" fill="url(#tg-grad)">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+            <span>Telegram</span>
+          </a>
+          <a href="https://instagram.com/istek.uz" target="_blank" rel="noopener" class="social-card-btn social-card-ig" style="text-decoration: none;">
+            <svg class="brand-svg-icon" viewBox="0 0 24 24" fill="url(#ig-grad)">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+        <button type="button" class="clean-line-input" style="text-align: center; cursor: pointer;" onclick="closeQuickLeadModal()">
+          Yopish
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=6"></script>
+</body>
+</html>
