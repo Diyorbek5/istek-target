@@ -1013,61 +1013,91 @@ body {
 }
 
 /* ==========================================================================
-   STICKY BOTTOM CALL-ORDER BAR
+   STICKY BOTTOM CALL-ORDER BAR (Full-Width Glowing Shimmer CTA)
    ========================================================================== */
 .sticky-bottom-bar {
   position: fixed;
-  bottom: 10px;
+  bottom: 12px;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 24px);
   max-width: 456px;
   z-index: 60;
-  background: rgba(9, 14, 22, 0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(203, 178, 130, 0.32);
-  border-radius: 18px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .dock-direct-btn {
-  flex: 1;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 14px;
-  background: linear-gradient(135deg, #dfcba4 0%, #c4a772 100%);
-  color: #080c12;
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(255, 240, 200, 0.65);
+  border-radius: 16px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #f3dfb6 0%, #d4b475 50%, #b5914d 100%);
+  color: #070b11;
   font-family: var(--font-sans);
-  font-size: 12.5px;
+  font-size: 14.5px;
   font-weight: 800;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 9px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(212, 180, 117, 0.42),
+    0 0 22px rgba(230, 205, 150, 0.32),
+    inset 0 1px 1px rgba(255, 255, 255, 0.75);
+  animation: ctaGlowPulse 2.4s ease-in-out infinite;
+  transition: transform 0.18s ease;
 }
 
-.dock-icon-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.dock-direct-btn:active {
+  transform: scale(0.985);
 }
 
-.dock-tg { color: #38bdf8; }
-.dock-ig { color: #f472b6; }
+/* Left-to-Right Shimmer Light Sweep */
+.dock-direct-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 45%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.72) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  animation: ctaLightSweep 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes ctaLightSweep {
+  0% { left: -75%; }
+  55%, 100% { left: 135%; }
+}
+
+@keyframes ctaGlowPulse {
+  0%, 100% {
+    box-shadow:
+      0 10px 28px rgba(212, 180, 117, 0.38),
+      0 0 16px rgba(230, 205, 150, 0.25),
+      inset 0 1px 1px rgba(255, 255, 255, 0.75);
+  }
+  50% {
+    box-shadow:
+      0 12px 36px rgba(212, 180, 117, 0.62),
+      0 0 30px rgba(243, 223, 182, 0.52),
+      inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  }
+}
 
 /* ==========================================================================
    QUICK LEAD MODAL
