@@ -434,12 +434,22 @@ async function submitLeadForm(e, source) {
 
   if (!isValid) return;
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmData = {
+    utm_source: urlParams.get('utm_source') || 'instagram',
+    utm_medium: urlParams.get('utm_medium') || 'target',
+    utm_campaign: urlParams.get('utm_campaign') || '',
+    utm_content: urlParams.get('utm_content') || ''
+  };
+
   const leadData = {
     name: nameVal,
     phone: phoneInput.value,
     product: productSelect ? productSelect.value : 'Eshik va Rom',
     region: (!isModal && regionSelect && regionSelect.value) ? regionSelect.value : 'Toshkent / O\'zbekiston',
-    createdAt: new Date().toLocaleString()
+    sourcePage: `page-${currentPage}`,
+    utm: utmData,
+    createdAt: new Date().toISOString()
   };
 
   try {
@@ -448,26 +458,14 @@ async function submitLeadForm(e, source) {
     localStorage.setItem('istek_leads', JSON.stringify(saved));
   } catch (_) {}
 
-  if (SITE_CONFIG.telegramBotToken && SITE_CONFIG.telegramChatId) {
-    const msg =
-      `🔥 *ISTEK.UZ — YANGI TARGET ARIZA*\n\n` +
-      `👤 *Mijoz:* ${leadData.name}\n` +
-      `📞 *Telefon:* ${leadData.phone}\n` +
-      `🪟 *Tizim:* ${leadData.product}\n` +
-      `📍 *Hudud:* ${leadData.region}`;
-
-    try {
-      await fetch(`https://api.telegram.org/bot${SITE_CONFIG.telegramBotToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: SITE_CONFIG.telegramChatId,
-          text: msg,
-          parse_mode: 'Markdown'
-        })
-      });
-    } catch (_) {}
-  }
+  // Xavfsiz Vercel Serverless Backend (/api/lead) orqali ERP/CRM va Telegramga yuborish
+  try {
+    await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(leadData)
+    });
+  } catch (_) {}
 
   // Show confirmation state
   const modal = document.getElementById('quick-lead-modal');
