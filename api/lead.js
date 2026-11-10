@@ -1,13 +1,9 @@
 /**
  * ISTEK.UZ — Xavfsiz Vercel Serverless Backend Proxy (/api/lead)
- *
- * Bu fayl brauzerdan kelgan lidni qabul qilib, maxfiy API kalit (ERP_API_SECRET)
- * orqali o'zingizning ERP/CRM tizimingizga (ERP_API_URL) xavfsiz yuboradi.
- * Kalitlar brauzerda umuman ko'rinmaydi!
+ * Bevosita isteksmart.uz ning SUPABASE (PostgreSQL) bazasiga xavfsiz yozadi!
  */
 
 export default async function handler(req, res) {
-  // 1. Faqat POST so'rovlarni qabul qilish
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Method Not Allowed' });
   }
@@ -16,12 +12,12 @@ export default async function handler(req, res) {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
     const { name, phone, product, region, sourcePage, utm, honeypot } = body;
 
-    // 2. Anti-Spam Honeypot tekshiruvi (botlar yashirin maydonni to'ldirsa bloklanadi)
+    // 1. Anti-Spam Honeypot tekshiruvi
     if (honeypot) {
       return res.status(200).json({ ok: true });
     }
 
-    // 3. Server-side Validatsiya (Ism va +998 telefon raqami)
+    // 2. Server-side Validatsiya (Ism va +998 telefon raqami)
     const cleanName = String(name || '').trim();
     const digitsOnly = String(phone || '').replace(/\D/g, '');
 
@@ -32,61 +28,80 @@ export default async function handler(req, res) {
       });
     }
 
-    // 4. ERP/CRM ga yuboriladigan standart JSON ma'lumot (Payload)
-    const leadPayload = {
-      full_name: cleanName,
-      phone: `+${digitsOnly}`,
-      formatted_phone: String(phone).trim(),
-      product_interest: String(product || 'Eshik va Rom').trim(),
-      region: String(region || 'Toshkent').trim(),
-      source: 'istek-target-site',
-      source_page: String(sourcePage || 'main'),
-      utm_source: utm?.utm_source || 'instagram',
-      utm_medium: utm?.utm_medium || 'cpc',
-      utm_campaign: utm?.utm_campaign || '',
-      utm_content: utm?.utm_content || '',
-      client_ip: req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '',
-      user_agent: req.headers['user-agent'] || '',
-      created_at: new Date().toISOString()
-    };
+    const formattedPhone = `+${digitsOnly}`;
+    const cleanProduct = String(product || 'Eshik va Rom').trim();
+    const cleanRegion = String(region || 'Toshkent').trim();
+    const utmSource = utm?.utm_source || 'instagram';
+    const utmCampaign = utm?.utm_campaign || 'target';
 
-    const results = { erpSent: false, telegramSent: false };
+    const results = { supabaseSaved: false, erpSent: false, telegramSent: false };
 
-    // 5. O'ZINGIZNING ERP / CRM TIZIMINGIZGA XAVFSIZ YUBORISH
-    // Vercel Settings -> Environment Variables ichiga qo'shiladi:
-    // ERP_API_URL = https://crm.istek.uz/api/webhooks/leads (yoki o'zingizning ERP endpointingiz)
-    // ERP_API_SECRET = maxfiy_kalit_12345
+    // 3. SUPABASE (PostgreSQL) BAZASIGA BEVOSITA XAVFSIZ YOZISH (isteksmart.uz uchun)
+    // Vercel Environment Variables ichida saqlanadi (brauzerda umuman ko'rinmaydi):
+    // - SUPABASE_URL (masalan: https://xyzcompany.supabase.co)
+    // - SUPABASE_SERVICE_ROLE_KEY (maxfiy service_role kaliti — RLS dan xavfsiz o'tadi)
+    // - SUPABASE_LEADS_TABLE (jadval nomi, standart: "leads")
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+    const supabaseTable = process.env.SUPABASE_LEADS_TABLE || 'leads';
+
+    if (supabaseUrl && supabaseKey) {
+      // isteksmart.uz Supabase "leads" jadvali uchun ustunlar:
+      const supabaseRow = {
+        name: cleanName,
+        phone: formattedPhone,
+        source: `Instagram Target (${cleanProduct})`,
+        status: 'new',
+        notes: `Mahsulot: ${cleanProduct} | Hudud: ${cleanRegion} | Kampaniya: ${utmCampaign}`
+      };
+
+      const sbRes = await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/${supabaseTable}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(supabaseRow)
+      });
+
+      results.supabaseSaved = sbRes.ok;
+    }
+
+    // 4. Ixtiyoriy: Maxsus Webhook URL bo'lsa (ERP_API_URL)
     const erpUrl = process.env.ERP_API_URL;
     const erpSecret = process.env.ERP_API_SECRET;
-
     if (erpUrl) {
-      const erpResponse = await fetch(erpUrl, {
+      const erpRes = await fetch(erpUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': erpSecret ? `Bearer ${erpSecret}` : '',
-          'X-Webhook-Secret': erpSecret || '',
-          'X-Source': 'istek-target'
+          'X-Webhook-Secret': erpSecret || ''
         },
-        body: JSON.stringify(leadPayload)
+        body: JSON.stringify({
+          full_name: cleanName,
+          phone: formattedPhone,
+          product_interest: cleanProduct,
+          region: cleanRegion,
+          source: utmSource,
+          campaign: utmCampaign
+        })
       });
-
-      results.erpSent = erpResponse.ok;
+      results.erpSent = erpRes.ok;
     }
 
-    // 6. Ixtiyoriy: Zaxira sifatida Telegram guruhga ham xavfsiz yuborish
-    // Vercel Environment Variables: TELEGRAM_BOT_TOKEN va TELEGRAM_CHAT_ID
+    // 5. Ixtiyoriy: Telegram guruhga bildirishnoma
     const tgToken = process.env.TELEGRAM_BOT_TOKEN;
     const tgChatId = process.env.TELEGRAM_CHAT_ID;
-
     if (tgToken && tgChatId) {
       const tgText =
         `🔥 *YANGI LID (ISTEK TARGET)*\n\n` +
-        `👤 *Mijoz:* ${leadPayload.full_name}\n` +
-        `📞 *Tel:* ${leadPayload.formatted_phone}\n` +
-        `🪟 *Tizim:* ${leadPayload.product_interest}\n` +
-        `📍 *Hudud:* ${leadPayload.region}\n` +
-        `🎯 *Manba:* ${leadPayload.utm_source} (${leadPayload.utm_campaign || 'Target'})`;
+        `👤 *Mijoz:* ${cleanName}\n` +
+        `📞 *Tel:* ${phone}\n` +
+        `🪟 *Tizim:* ${cleanProduct}\n` +
+        `📍 *Hudud:* ${cleanRegion}`;
 
       const tgRes = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
         method: 'POST',
@@ -100,14 +115,8 @@ export default async function handler(req, res) {
       results.telegramSent = tgRes.ok;
     }
 
-    return res.status(200).json({
-      ok: true,
-      ...results
-    });
+    return res.status(200).json({ ok: true, ...results });
   } catch (err) {
-    return res.status(500).json({
-      ok: false,
-      error: 'Server xatoligi'
-    });
+    return res.status(500).json({ ok: false, error: 'Server xatoligi' });
   }
 }
