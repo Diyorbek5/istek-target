@@ -1,7 +1,10 @@
 /**
  * ISTEK.UZ — Xavfsiz Vercel Serverless Backend Proxy (/api/lead)
- * Bevosita isteksmart.uz ning SUPABASE (PostgreSQL) bazasiga xavfsiz yozadi!
+ * Bevosita isteksmart.uz ning SUPABASE "flat_marketing" jadvaliga yozadi!
  */
+
+const DEFAULT_SUPABASE_URL = 'https://edamkzvtytofcsvfswxn.supabase.co';
+const DEFAULT_TABLE = 'flat_marketing';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -10,7 +13,7 @@ export default async function handler(req, res) {
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
-    const { name, phone, product, region, sourcePage, utm, honeypot } = body;
+    const { name, phone, product, region, utm, honeypot } = body;
 
     // 1. Anti-Spam Honeypot tekshiruvi
     if (honeypot) {
@@ -31,31 +34,59 @@ export default async function handler(req, res) {
     const formattedPhone = `+${digitsOnly}`;
     const cleanProduct = String(product || 'Eshik va Rom').trim();
     const cleanRegion = String(region || 'Toshkent').trim();
-    const utmSource = utm?.utm_source || 'instagram';
-    const utmCampaign = utm?.utm_campaign || 'target';
+    const now = new Date();
+    const todayDate = now.toISOString().split('T')[0]; // YYYY-MM-DD (sana ustuni uchun)
+    const timestampMs = Date.now();
+    const shortCode = String(timestampMs).slice(-5);
 
-    const results = { supabaseSaved: false, erpSent: false, telegramSent: false };
+    const supabaseUrl = (process.env.SUPABASE_URL || DEFAULT_SUPABASE_URL).replace(/\/$/, '');
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY;
+    const tableName = process.env.SUPABASE_LEADS_TABLE || DEFAULT_TABLE;
 
-    // 3. SUPABASE (PostgreSQL) BAZASIGA BEVOSITA XAVFSIZ YOZISH (isteksmart.uz uchun)
-    // Vercel Environment Variables ichida saqlanadi (brauzerda umuman ko'rinmaydi):
-    // - SUPABASE_URL (masalan: https://xyzcompany.supabase.co)
-    // - SUPABASE_SERVICE_ROLE_KEY (maxfiy service_role kaliti — RLS dan xavfsiz o'tadi)
-    // - SUPABASE_LEADS_TABLE (jadval nomi, standart: "leads")
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-    const supabaseTable = process.env.SUPABASE_LEADS_TABLE || 'leads';
+    const results = { supabaseSaved: false };
 
     if (supabaseUrl && supabaseKey) {
-      // isteksmart.uz Supabase "leads" jadvali uchun ustunlar:
-      const supabaseRow = {
-        name: cleanName,
-        phone: formattedPhone,
-        source: `Instagram Target (${cleanProduct})`,
-        status: 'new',
-        notes: `Mahsulot: ${cleanProduct} | Hudud: ${cleanRegion} | Kampaniya: ${utmCampaign}`
+      // 3. organization_id ni aniqlash (env dan oladi yoki jadvaldagi mavjud qatordan avtomatik topadi)
+      let orgId = process.env.SUPABASE_ORG_ID || null;
+
+      if (!orgId) {
+        try {
+          const orgRes = await fetch(
+            `${supabaseUrl}/rest/v1/${tableName}?select=organization_id&organization_id=not.is.null&limit=1`,
+            {
+              headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`
+              }
+            }
+          );
+          if (orgRes.ok) {
+            const rows = await orgRes.json();
+            if (Array.isArray(rows) && rows.length > 0 && rows[0].organization_id) {
+              orgId = rows[0].organization_id;
+            }
+          }
+        } catch (_) {}
+      }
+
+      // 4. "flat_marketing" jadvalining aniq ustunlariga mos qator:
+      const flatMarketingRow = {
+        rowNum: timestampMs,
+        id: `TARGET-${shortCode}`,
+        sana: todayDate,
+        ism: cleanName,
+        telefon: formattedPhone,
+        manba: 'Instagram',
+        izoh: `[Target Sayt] ${cleanProduct} | Hudud: ${cleanRegion}`,
+        holat: 'Yangi',
+        kanal: 'Instagram',
+        turi: 'Issiq',
+        tavsif: utm?.utm_campaign ? `Kampaniya: ${utm.utm_campaign}` : null,
+        sotuv_id: null,
+        ...(orgId ? { organization_id: orgId } : {})
       };
 
-      const sbRes = await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/${supabaseTable}`, {
+      const sbRes = await fetch(`${supabaseUrl}/rest/v1/${tableName}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,56 +94,13 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${supabaseKey}`,
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify(supabaseRow)
+        body: JSON.stringify(flatMarketingRow)
       });
 
       results.supabaseSaved = sbRes.ok;
-    }
-
-    // 4. Ixtiyoriy: Maxsus Webhook URL bo'lsa (ERP_API_URL)
-    const erpUrl = process.env.ERP_API_URL;
-    const erpSecret = process.env.ERP_API_SECRET;
-    if (erpUrl) {
-      const erpRes = await fetch(erpUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': erpSecret ? `Bearer ${erpSecret}` : '',
-          'X-Webhook-Secret': erpSecret || ''
-        },
-        body: JSON.stringify({
-          full_name: cleanName,
-          phone: formattedPhone,
-          product_interest: cleanProduct,
-          region: cleanRegion,
-          source: utmSource,
-          campaign: utmCampaign
-        })
-      });
-      results.erpSent = erpRes.ok;
-    }
-
-    // 5. Ixtiyoriy: Telegram guruhga bildirishnoma
-    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
-    const tgChatId = process.env.TELEGRAM_CHAT_ID;
-    if (tgToken && tgChatId) {
-      const tgText =
-        `🔥 *YANGI LID (ISTEK TARGET)*\n\n` +
-        `👤 *Mijoz:* ${cleanName}\n` +
-        `📞 *Tel:* ${phone}\n` +
-        `🪟 *Tizim:* ${cleanProduct}\n` +
-        `📍 *Hudud:* ${cleanRegion}`;
-
-      const tgRes = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: tgChatId,
-          text: tgText,
-          parse_mode: 'Markdown'
-        })
-      });
-      results.telegramSent = tgRes.ok;
+      if (!sbRes.ok) {
+        results.supabaseError = await sbRes.text();
+      }
     }
 
     return res.status(200).json({ ok: true, ...results });
